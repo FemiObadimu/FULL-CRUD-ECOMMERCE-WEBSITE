@@ -9,7 +9,7 @@ const Product = () => {
   return (
     <Container>
       <Row>
-        <Col md={12}>
+        <Col md={12} classname="flexed-products text-center">
           {products.map((product) => (
             <ProductItems product={product} key={product.id} />
           ))}

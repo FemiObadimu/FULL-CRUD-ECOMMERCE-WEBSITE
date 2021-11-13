@@ -1,23 +1,39 @@
-import React from "react";
-import {Button} from "react-bootstrap"
+import React, { useContext } from "react";
+import { Button, Card } from "react-bootstrap";
+import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ProductContext from "../../context/products/productContext";
 
 const ProductItems = (product) => {
+  const productContext = useContext(ProductContext);
+  const { addProduct } = productContext;
+
+  const onAdd = () => {
+    addProduct(product);
+  };
   return (
-    <div className="container">
-      <div className="product-section">
-        <img src="" alt="" />
-        <p className="title"></p>
-        <div>
-          <p className="price"></p>
-          <p className="category"></p>
-        </div>
-        <div>
-          <p className="count"></p>
-          <div>
-            <Button className="btn btn-md">Add to cart</Button>
+    <div className="text-center">
+      <Card style={{ padding: "30px 0px", border: "none" }}>
+        <Card.Img
+          variant="top"
+          src={product.product.image}
+          alt="cartify.io images"
+        />
+        <Card.Body>
+          <Card.Title className="text-center">
+            <h2>{product.product.title}</h2>
+          </Card.Title>
+          <h2 className="price text-center">${product.product.price}</h2>
+          <div className="flexed text-center">
+            <div className="category">
+              <h4>{product.product.category}</h4>
+            </div>
+            <Button variant="outline-dark" onClick={onAdd}>
+              <FontAwesomeIcon icon={faShoppingBasket} />
+            </Button>
           </div>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 };

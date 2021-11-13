@@ -22,7 +22,11 @@ const productReducer = (state, action) => {
         loading: false,
       };
     case ADD_PRODUCT:
-      if (state.cart.find((product) => product.name === action.payload.name)) {
+      if (
+        state.cart.find(
+          (product) => product.product.title === action.payload.product.title
+        )
+      ) {
         return {
           ...state,
           cart: [...state.cart],

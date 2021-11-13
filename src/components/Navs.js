@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import ProductContext from "../context/products/productContext";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {} from "@fortawesome/free-regular-svg-icons";
@@ -11,6 +12,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Navs = () => {
+  const productContext = useContext(ProductContext);
+
+  const { cart } = productContext;
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -26,7 +30,7 @@ const Navs = () => {
           <li className="nav-item">
             <NavLink
               exact
-              to="/"
+              to="/shop"
               activeClassName="active"
               className="nav-links"
               onClick={handleClick}
@@ -43,7 +47,7 @@ const Navs = () => {
               onClick={handleClick}
             >
               Cart
-              <FontAwesomeIcon icon={faCartArrowDown} />
+              <FontAwesomeIcon icon={faCartArrowDown} />({cart.length})
             </NavLink>
           </li>
           <li className="nav-item">

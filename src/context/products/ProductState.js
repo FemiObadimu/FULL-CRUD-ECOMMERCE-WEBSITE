@@ -1,5 +1,4 @@
 import React, { useReducer, useEffect } from "react";
-import { v4 as uuid } from "uuid";
 import productContext from "./productContext";
 import productReducer from "./productReducer";
 
@@ -38,7 +37,6 @@ const ProductState = (props) => {
   }, []);
 
   const addProduct = (product) => {
-    product.id = uuid();
     dispatch({ type: ADD_PRODUCT, payload: product });
   };
 
